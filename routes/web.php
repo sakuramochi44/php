@@ -14,3 +14,26 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::group(['prefix' => 'admin'], function() {
+  Route::get('news/create', 'Admin\NewsController＠add');
+});
+
+
+/*「http://XXXXXX.jp/XXX というアクセスが来たときに、
+AAAControllerのbbbというAction に渡すRoutingの設定」を書いてみてください。*/
+
+Route::group(['prefix' => 'admin'],  function() {
+ Route::get('XXX','Admin \AAAController@bbb');
+});
+
+/*【応用】 前章でAdmin/ProfileControllerを作成し、add Action, edit Actionを
+追加しました。web.phpを編集して、
+admin/profile/create にアクセスしたら ProfileController の add Action に、
+admin/profile/edit にアクセスしたら ProfileController の edit Action に
+割り当てるように設定してください。*/
+
+Route::group(['prefix' => 'admin'], function() {
+    Route::get('profile/create', 'Admin\ProfileController@admin.profile.create');
+    Route::get('profile/edit', 'ProfileController@Action');
+});
